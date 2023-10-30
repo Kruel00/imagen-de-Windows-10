@@ -18,7 +18,7 @@ if (Test-Path $checkScrip){
 }
 
 ##########################################################################################################
-#                 Instalacion de programas para la creacion de imagen de Windows 10 Pro N                #
+#                 Instalacion de programas para la imagen de Windows 10 Pro N                #
 ##########################################################################################################
 
 if(Test-Path c:\temp){
@@ -43,7 +43,7 @@ Copy-Item -Path "\\b1fs\Shared\ITSupport\Software\Adobe\Acrobat Reader\AcroRdrDC
 Start-Process -Wait -FilePath "\\b1fs\Shared\ITSupport\Software\7-Zip\x64\7z938-x64.msi" -ArgumentList "/q" -PassThru
 
 ##########################################################################################################
-#                  Decomprimir programas que lo requieren para ser instalador                            #
+#                  Descomprimir programas que lo requieren para ser instalador                            #
 ##########################################################################################################
 $Source = $env:HOMEDRIVE + "\temp\programas\iTunes*(64-bit)\iTunes*.exe"
 
@@ -110,13 +110,8 @@ Start-Process -Wait -FilePath "\\b1fs\Shared\ITSupport\Drivers\Controlador fixtu
 Start-Process -Wait -FilePath "\\b1fs\Shared\ITSupport\IT Apps\Helpers\MS_VC_redist\2012\vcredist_x86.exe" -ArgumentList "/s" -PassThru
 Start-Process -Wait -FilePath "\\b1fs\Shared\ITSupport\IT Apps\Helpers\MS_VC_redist\2015\vc_redist.x86.exe" -ArgumentList "/s" -PassThru
 
-#Pics II 
-mkdir $env:HOMEDRIVE\"PicsII\Pics Runtime"
-Copy-Item -Path "\\IT-TOOLS\PicsII Update\PICS II_Upgrade.bat" "C:\PicsII\Pics Runtime\" -recurse -passthru
-Copy-Item -Path "\\IT-TOOLS\PicsII Update\PICS_II.lnk" "C:\users\Public\Desktop\" -recurse -passthru
-
-#Valutech folder
-Copy-Item -Path "\\b1fs\Shared\ITSupport\IT_Stuff\tools\" "C:\Valutech\" -recurse -passthru
+#Company folder
+Copy-Item -Path "\\b1fs\Shared\ITSupport\IT_Stuff\tools\" "C:\Company\" -recurse -passthru
 
 #Wifi TP-Link
 Start-Process -Wait -FilePath "\\b1fs\Shared\ITSupport\Drivers\TPLink Wireless\Archer T6E\Setup.exe" -ArgumentList "/s" -PassThru
@@ -126,7 +121,7 @@ Write-Host "
 #                                   Terminando configuracion..                                           #
 ##########################################################################################################"
 #Datos de activacion
-Set-ItemProperty -path "hklm:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" -Name KeyManagementServiceName -Value "b1services.valuout.com"
+Set-ItemProperty -path "hklm:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" -Name KeyManagementServiceName -Value "company.domain.com"
 Set-ItemProperty -path "hklm:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" -Name KeyManagementServicePort -Value "1688"
 Set-ItemProperty -path "hklm:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" -Name BackupProductKeyDefault -Value "MH37W-N47XK-V7XM9-C7227-GCQG9"
 slmgr /ipk "MH37W-N47XK-V7XM9-C7227-GCQG9"
